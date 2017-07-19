@@ -33,7 +33,7 @@ RSpec.describe WeatherService, type: :model do
  			context "city is invalid" do
 
  				before(:each) do
- 					FakeWeb.register_uri(:get, weather_service.webserive_uri, :body => '{"cod":404,"message":"city not found"}')
+ 					FakeWeb.register_uri(:get, weather_service.webserive_uri, :body => '{"cod":"404","message":"city not found"}')
  				end
 
  				let(:results) { weather_service.get_weather_info }

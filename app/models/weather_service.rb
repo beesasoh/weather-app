@@ -23,7 +23,7 @@ class WeatherService
 				else
 					return WeatherRequestResults.new(true, Weather.new_instance(response_hash), nil )
 				end
-			elsif cod == 404
+			elsif cod == "404"
 				return WeatherRequestResults.new(false, nil, "City not found" )
 			else
 				return WeatherRequestResults.new(false, nil, "An error occured. Please try again" )

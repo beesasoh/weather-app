@@ -12,24 +12,37 @@
 				<h2>Weather in your city</h2>
 
 				<div class="search-form">
-					<div class="row">
-						<div class="col-md-4 col-sm-6 field">
-							<input type="text" name=""
-								 placeholder="Country name" class="form-control">
-						</div>
-						<div class="col-md-4 col-sm-6 field">
-							<input type="text" name=""
-								 placeholder="City name" class="form-control">
-						</div>
-						<div class="col-md-4 field">
-							<input type="submit" name="" 
-							value="Search" class="form-control btn btn-search">
-						</div>
-					</div>	
+					<%= form_tag("get_weather_info", remote: true, id: "search-form") do %>
+						<div class="row">
+							<div class="col-md-4 col-sm-6 field">
+								<%= text_field_tag :country, "",
+											placeholder: "Country name", class: "form-control" %>
+						
+							</div>
+							<div class="col-md-4 col-sm-6 field">
+								<%= text_field_tag :city, "",
+											placeholder: "City name", 
+											class: "form-control", required: "required" %>
+							</div>
+							<div class="col-md-4 field">
+								<input type="submit" name="" 
+								value="Search" class="form-control btn btn-search">
+							</div>
+						</div>	
+					<% end %>
+				</div>
+
+				<div class="progress" id="progress-bar">
+				  <div class="progress-bar progress-bar-striped progress-bar-warning active" role="progressbar"
+				  aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+				    please wait
+				  </div>
+				</div>
+
+				<div class="results" id="results">
 					
 				</div>
 
-			<div class="results"></div>
 			</div>
 		</div>
 		<div class="col-md-6">
@@ -41,7 +54,7 @@
 						<div class="row">
 							<div class="col-xs-8">Beijing</div>
 							<div class="col-xs-2">
-								<img src="icon.png" class="img-responsive" />
+								<!-- <img src="icon.png" class="img-responsive" /> -->
 							</div>
 							<div class="col-xs-2">82<sup>o</sup></div>
 						</div>
@@ -54,3 +67,12 @@
 		</div>
 	</div>
 </div>
+
+
+<script type="text/javascript">
+	$("#search-form").submit(
+		function(){
+			$("#progress-bar").show();
+		}
+	);
+</script>

@@ -1,0 +1,28 @@
+<% if @weather %>
+	<div class="row">
+		<div class="col-xs-2">
+			<%= image_tag @weather.get_icon_url  %>
+		</div>
+		<div class="col-xs-10">
+			<div class="location">
+				<span class="location-info"><%= @weather.city %>, <%= @weather.country %></span>
+				<span class="location-icon"><%= image_tag(@weather.get_flag_url) %></span>
+				<span class="weather-description"><%= @weather.description %></span>
+			</div>
+			<div class="weather-details">
+				<span class="badge"><%= @weather.temp %><sup>o</sup>C</span>
+				<span class="info"> 
+					temperature from <%= @weather.temp_min %><sup>o</sup>C to 
+					<%= @weather.temp_max %><sup>o</sup>C , 
+					wind <%= @weather.wind_speed %>m/s. <%= @weather.pressure %>hpa
+				</span>
+			</div>
+		</div>
+	</div>	
+<% end %>
+
+<% if @error %>
+	<div class="error-response">
+		<p class="alert alert-warning"><%= @error %></p>
+	</div>
+<% end %>

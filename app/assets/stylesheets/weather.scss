@@ -1,6 +1,8 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+$appOrange: #d26c22;
+
 body{
 	padding-top: 100px;
 	background-color: #eee;
@@ -36,33 +38,71 @@ body{
         font-size: 1.7em;
         margin: 0;
         padding: 0.7em;
-        color: #d26c22;
+        color: $appOrange;
+    }
+
+    .search-form{
+        background: $appOrange;
+        background-image: radial-gradient(#e28d50,#d26c22);
+        padding: 2em 1em;
+
+        .field{
+            margin-bottom: .5em;
+        }
+
+        input[type=text]{
+            border: 1px solid #c1631f;
+            border-radius: 3px;
+            box-shadow: none;
+        }
+
+        .btn-search{
+            background-color: #d26c22;
+            border: 1px solid #c1631f;
+            box-shadow: none;
+            color: #fff;
+        }
+    }
+
+    #progress-bar{
+        display: none;
+    }
+
+    .results{
+        padding: 3em 1em;
+
+        .location{
+
+            .location-info{
+                font-size: 1.5em;
+                color: $appOrange;
+            }
+            .location-icon{
+
+            }
+
+            .weather-description{
+                font-weight: bold;
+            }
+        }
+
+        .weather-details{
+            font-size: 1.1em;
+            margin-top: .3em;
+            line-height: 24px;
+
+            .badge{
+                font-size: 1.1em;
+            }
+        }
+
+        .error-response{
+            padding: 1em;
+        }
+
     }
 }
 
-
-.search-form{
-	background: #d26c22;
-    background-image: radial-gradient(#e28d50,#d26c22);
-    padding: 2em 1em;
-
-    .field{
-        margin-bottom: .5em;
-    }
-
-    input[type=text]{
-        border: 1px solid #c1631f;
-        border-radius: 3px;
-        box-shadow: none;
-    }
-
-    .btn-search{
-        background-color: #d26c22;
-        border: 1px solid #c1631f;
-        box-shadow: none;
-        color: #fff;
-    }
-}
 
 .random-locations-weather{
 	background-color: #fff;

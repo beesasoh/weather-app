@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   get 'weather/index'
+  post 'get_weather_info' => 'weather#get_weather_info'
 
   root 'weather#index'
 
