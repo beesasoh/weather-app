@@ -1,0 +1,93 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body{
+	padding-top: 100px;
+	background-color: #eee;
+}
+
+.clear-fix{
+	clear: both;
+}
+
+.fixed-header-bar{
+	background-color: #777;
+    color: #fff;
+    padding: 1em;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 5;
+
+    .site-branding{
+        font-size: 1.5em;
+    }
+}
+
+
+.dynamic-weather-info{
+	background-color: #fff;
+    min-height: 400px;
+    box-shadow: 0 0 5px #ccc;
+    margin-bottom: 2em;
+
+    h2{
+        font-size: 1.7em;
+        margin: 0;
+        padding: 0.7em;
+        color: #d26c22;
+    }
+}
+
+
+.search-form{
+	background: #d26c22;
+    background-image: radial-gradient(#e28d50,#d26c22);
+    padding: 2em 1em;
+
+    .field{
+        margin-bottom: .5em;
+    }
+
+    input[type=text]{
+        border: 1px solid #c1631f;
+        border-radius: 3px;
+        box-shadow: none;
+    }
+
+    .btn-search{
+        background-color: #d26c22;
+        border: 1px solid #c1631f;
+        box-shadow: none;
+        color: #fff;
+    }
+}
+
+.random-locations-weather{
+	background-color: #fff;
+    box-shadow: 0 0 5px #ccc;
+    margin-bottom: 4em;
+
+    h2{
+        font-size: 1.7em;
+        margin: 0;
+        padding: 0.7em;
+    }
+
+    ul{
+        border-top: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+        background-color: rgb(250,250,250);
+
+        li{
+            display: inline-block;
+            width: 50%;
+            float: left;
+            border-bottom: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+            padding: 1em .7em;
+        }
+    }
+}
+
