@@ -8,18 +8,40 @@ class WeatherService
 	end
 
 	def get_weather_info
-		
+		begin
+			response_json = HTTParty.get(webserive_uri).body
+
+			puts response_json
+			response_hash = JSON.parse(response_json)
+
+			cod = response_hash["cod"]
+
+			puts cod
+			if cod == 200
+				weather = Weather.new_instance(response_hash)
+
+				if weather.nil?
+					return WeatherRequestResults.new(false, nil, "Failed to read weather information" )
+				else
+					return WeatherRequestResults.new(true, Weather.new_instance(response_hash), nil )
+				end
+			elsif cod == 404
+				return WeatherRequestResults.new(false, nil, "City not found" )
+			else
+				return WeatherRequestResults.new(false, nil, "An error occured. Please try again" )
+			end
+
+		rescue Exception => e
+			puts "ERROR: #{e}"
+			message = "Something went wrong. Please check your internet connection and try again"
+			return WeatherRequestResults.new(false, nil, message)
+		end
 	end
 
-	def send_request_to_server
-		
-	end
-
-	def process_server_response response
-		
-	end
-
-	def create_uri
+	def webserive_uri
+		q = country.nil? ? city : "#{city},#{country}"
+		url = "#{APP_CONFIGS[:api_url]}?q=#{q}&appid=#{APP_CONFIGS[:api_key]}&units=#{APP_CONFIGS[:units]}"
+		return URI::encode(url)
 	end
 
 end
