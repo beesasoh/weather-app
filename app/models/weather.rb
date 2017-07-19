@@ -17,7 +17,7 @@ class Weather
 			weather.wind_speed = params["wind"]["speed"]
 			return weather
 		rescue Exception => e
-			puts "ERROR: #{e}"
+			LOGGER.error("Weather#new_instance failed to create weather object: #{e}")
 			return nil
 		end
 		
