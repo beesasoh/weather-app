@@ -14,6 +14,23 @@ RSpec.describe WeatherController, type: :controller do
       expect(response).to render_template("index")
     end
 
+    describe "assigns @random_weather_locations" do
+
+      context "when server returns success JSON" do
+
+        it "returns array of weather objects" do
+          FakeWeb.register_uri(:get, WeatherService.group_webservice_url, :body => '{"cnt":2,"list":[{"coord":{"lon":13.41,"lat":52.52},"sys":{"type":1,"id":4892,"message":0.044,"country":"DE","sunrise":1500520129,"sunset":1500578148},"weather":[{"id":802,"main":"Clouds","description":"scattered clouds","icon":"03d"}],"main":{"temp":24,"pressure":1009,"humidity":64,"temp_min":24,"temp_max":24},"visibility":10000,"wind":{"speed":3.6,"deg":170},"clouds":{"all":40},"dt":1500541937,"id":2950159,"name":"Berlin"},{"coord":{"lon":32.58,"lat":0.32},"sys":{"type":1,"id":6505,"message":0.002,"country":"UG","sunrise":1500522722,"sunset":1500566408},"weather":[{"id":801,"main":"Clouds","description":"few clouds","icon":"02d"}],"main":{"temp":24,"pressure":1021,"humidity":73,"temp_min":24,"temp_max":24},"visibility":9000,"wind":{"speed":1.5,"deg":290},"clouds":{"all":20},"dt":1500541937,"id":232422,"name":"Kampala"}]}')
+          
+          get :index
+
+          expect(assigns(:random_weather_locations).class).to eq(Array)
+          expect(assigns(:random_weather_locations).first.class).to eq(Weather)
+        end
+      end
+
+    end
+    
+
   end
 
   describe 'XHR #get_weather_info' do

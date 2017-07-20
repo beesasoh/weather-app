@@ -46,4 +46,35 @@ class WeatherService
 		return uri
 	end
 
+	def self.group_webservice_url
+		id = APP_CONFIGS[:key_cities].sample(20).join(",")
+		url = "#{APP_CONFIGS[:api_url_group]}?id=#{id}&appid=#{APP_CONFIGS[:api_key]}&units=#{APP_CONFIGS[:units]}"
+		uri = URI::encode(url)
+
+		LOGGER.info("Group Webserivce URI returned as: #{url}")
+		return uri
+	end
+
+	def self.get_group_weather_info
+
+		begin
+			response_json = HTTParty.get(group_webservice_url).body
+			LOGGER.info("get_group_weather_info | Server response: #{response_json}")
+
+			response_hash = JSON.parse(response_json)
+			
+			if response_hash["list"]
+
+				return response_hash["list"].map{|weather_item| Weather.new_instance(weather_item) }
+			else
+				return []
+			end
+
+		rescue Exception => e
+			LOGGER.error("get_group_weather_info | ERROR: #{e}")
+			return []
+		end
+		
+	end
+
 end

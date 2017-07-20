@@ -6,7 +6,7 @@
 
 <div class="container">
 	<div class="page-content">
-		<div class="col-md-6">
+		<div class="col-md-12">
 
 			<div class="dynamic-weather-info">
 				<h2>Weather in your city</h2>
@@ -45,24 +45,32 @@
 
 			</div>
 		</div>
-		<div class="col-md-6">
+		<div class="col-md-12">
 			<div class="random-locations-weather">
 				<h2>World weather conditions</h2>
 
-				<ul class="list-unstyled">
-					<li>
-						<div class="row">
-							<div class="col-xs-8">Beijing</div>
-							<div class="col-xs-2">
-								<!-- <img src="icon.png" class="img-responsive" /> -->
+				<% if @random_weather_locations.empty? %>
+					<p class="alert alert-warning">
+						Please reload page to view world weather conditions
+					</p>
+				<% else %>
+					<div class="row weather-list">
+						<% @random_weather_locations.each do |weather| %>
+							<div class="col-md-3 col-xs-6 weather-list-item">
+								<div>
+									<div><%= image_tag(weather.get_icon_url) %></div>
+									<div class="location">
+										<%= weather.city %>, 
+										<%= weather.country %> 
+										<%= image_tag(weather.get_flag_url, class: "") %>
+									</div>
+									<div>
+									<%= weather.temp %><sup>o</sup></div>
+								</div>
 							</div>
-							<div class="col-xs-2">82<sup>o</sup></div>
-						</div>
-					</li>
-					
-					
-					<div class="clear-fix"></div>
-				</ul>
+						<% end %>
+					</div>
+				<% end %>
 			</div>
 		</div>
 	</div>

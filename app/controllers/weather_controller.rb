@@ -1,6 +1,7 @@
 class WeatherController < ApplicationController
 
   def index
+  	@random_weather_locations = WeatherService.get_group_weather_info
   end
 
   def get_weather_info
